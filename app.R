@@ -107,9 +107,10 @@ library(ggplot2)
 # Divisive clustering
 ggplot(data = data.frame(t(stats.df.divisive)), aes(x=cluster.number, y=within.cluster.ss)) + geom_point()+
   geom_line()+
-  ggtitle("Divisive clustering") +
-  labs(x = "Num.of clusters", y = "Within clusters sum of squares (SS)") +
-  theme(plot.title = element_text(hjust = 0.5))
+  ggtitle("") +
+  labs(x = "Num.of clusters", y = "Within sum of squares") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw(base_size=20)
 
 # Silhouette
 ggplot(data = data.frame(t(stats.df.divisive)), aes(x=cluster.number, y=avg.silwidth)) + geom_point()+
@@ -122,9 +123,10 @@ ggplot(data = data.frame(t(stats.df.divisive)), aes(x=cluster.number, y=avg.silw
 # Elbow
 ggplot(data = data.frame(t(stats.df.aggl)), aes(x=cluster.number, y=within.cluster.ss)) + geom_point()+
   geom_line()+
-  ggtitle("Aggloromative clustering") +
-  labs(x = "Num.of clusters", y = "Within clusters sum of squares (SS)") +
-  theme(plot.title = element_text(hjust = 0.5))
+  ggtitle("") +
+  labs(x = "Num.of clusters", y = "Within sum of squares") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw(base_size=20)
 
 # Silhouette
 ggplot(data = data.frame(t(stats.df.aggl)), aes(x=cluster.number, y=avg.silwidth)) + geom_point()+
@@ -135,11 +137,11 @@ ggplot(data = data.frame(t(stats.df.aggl)), aes(x=cluster.number, y=avg.silwidth
 
 # Finally, assigning the cluster number to the observation
 
-clust.num <- cutree(divisive.clust, k = 6) 
+clust.num <- cutree(divisive.clust, k = 3) 
 id.s = c(1:58)
 projects.cl <- cbind(id.s, projects, clust.num)
 
-clust.aggl.num <- cutree(divisive.clust, k = 3) 
+clust.aggl.num <- cutree(aggl.clust.c, k = 3) 
 id.s = c(1:58)
 projects.aggl.cl <- cbind(id.s, projects, clust.aggl.num)
 #projects.cl <- cbind(projects, clust.num)
